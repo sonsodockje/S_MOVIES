@@ -3,6 +3,7 @@
   let alertText = "";
 
   export let data = [];
+  export let data_temp = [];
 
   $: if (inputText.length > 16) {
     alertText = "입력 한도 초과";
@@ -11,12 +12,12 @@
   }
 
   const serchMovie = () => {
-    let findeMovie = data.filter((movie) => {
-      return movie.title == inputText;
+    data_temp = data.filter((movie) => {
+      console.log(data_temp);
+      return movie.title.includes(inputText);
     });
-    console.log(findeMovie);
 
-    if (findeMovie.length === 0) {
+    if (data_temp.length === 0) {
       alertText = "검색 결과가 없습니다.";
     } else {
       alertText = "";

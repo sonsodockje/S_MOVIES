@@ -1,7 +1,6 @@
 <script>
-  export let data = [];
+  export let data_temp = [];
   export let isModal = false;
-  export let selectMovie = 0;
   export let handleLike;
   export let handleMovieNumber;
 </script>
@@ -9,7 +8,7 @@
 <main class="container">
   <h1>영화정보</h1>
 
-  {#each data as item, i}
+  {#each data_temp as item, i}
     <div class="item">
       <figure>
         <img src="{item.imgUrl}" alt="{item.title}" />
