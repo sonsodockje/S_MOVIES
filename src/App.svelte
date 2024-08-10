@@ -7,6 +7,7 @@
   import SearchBar from "./lib/components/SearchBar.svelte";
 
   let selectMovie = 0;
+
   const handleLike = (i) => {
     data[i].likeCount += 1;
   };
@@ -28,7 +29,7 @@
   <Event bind:isEvent="{isEvent}" />
 {/if}
 
-<SearchBar />
+<SearchBar data="{data}" />
 
 <Movies
   data="{data}"

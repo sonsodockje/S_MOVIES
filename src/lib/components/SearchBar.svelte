@@ -1,15 +1,47 @@
 <script>
   let inputText = "";
+  let alertText = "";
+
+  export let data = [];
+
+  $: if (inputText.length > 16) {
+    alertText = "입력 한도 초과";
+  } else {
+    alertText = "";
+  }
+
+  const serchMovie = () => {
+    let findeMovie = data.filter((movie) => {
+      return movie.title == inputText;
+    });
+    console.log(findeMovie);
+
+    if (findeMovie.length === 0) {
+      alertText = "검색 결과가 없습니다.";
+    } else {
+      alertText = "";
+    }
+  };
 </script>
 
 <div class="search-box">
   <div class="input-group">
-    <input type="text" bind:value="{inputText}" />
-    <button>검색</button>
+    <input
+      type="text"
+      bind:value="{inputText}"
+      on:keydown="{(e) => {
+        if (e.key === 'Enter') {
+          serchMovie();
+        }
+      }}"
+    />
+    <button on:click="{serchMovie}">검색</button>
   </div>
 </div>
 
-<p>{inputText}</p>
+{#if alertText}
+  <p class="text-center alert">{alertText}</p>
+{/if}
 
 <style>
   .search-box {
@@ -44,5 +76,13 @@
     margin: 0;
     padding: 0;
     border-radius: 0;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .alert {
+    color: red;
   }
 </style>
