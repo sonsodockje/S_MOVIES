@@ -22,10 +22,9 @@
     console.log("temp", data_temp);
 
     // 현재 화면에 보여지는 것만 초기화
-    data_temp ==
-      data.filter((item) => {
-        return data_temp.includes(item);
-      });
+    data_temp = data.filter((item) => {
+      return data_temp.includes(item);
+    });
   };
 
   let isModal = false;
