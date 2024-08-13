@@ -6,21 +6,34 @@
   import Event from "./lib/components/Event.svelte";
   import SearchBar from "./lib/components/SearchBar.svelte";
 
-  let data_temp = [...data];
+  let alertText = "";
   let selectMovie = 0;
 
-  const handleLike = (i) => {
-    data[i].likeCount += 1;
-    console.log(i);
-    console.log(data_temp);
+  let data_temp = [...data];
+
+  const handleLike = (id) => {
+    // 원본 데이터 없데이트
+    data.map((item) => {
+      if (item.id === id) {
+        item.likeCount += 1;
+      }
+    });
+    console.log("data", data);
+    console.log("temp", data_temp);
+
+    // 현재 화면에 보여지는 것만 초기화
+    data_temp ==
+      data.filter((item) => {
+        return data_temp.includes(item);
+      });
   };
 
   let isModal = false;
   const handleModal = () => {
     isModal = !isModal;
   };
-  const handleMovieNumber = (i) => {
-    selectMovie = i;
+  const handleMovieNumber = (id) => {
+    selectMovie = id;
   };
 
   let isEvent = true;
@@ -32,11 +45,16 @@
   <Event bind:isEvent="{isEvent}" />
 {/if}
 
-<SearchBar data="{data}" bind:data_temp="{data_temp}" />
+<SearchBar
+  data="{data}"
+  bind:data_temp="{data_temp}"
+  bind:alertText="{alertText}"
+/>
 
 <button
   on:click="{() => {
     data_temp = [...data];
+    alertText = '';
   }}">전체보기</button
 >
 

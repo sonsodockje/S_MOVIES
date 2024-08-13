@@ -19,14 +19,14 @@
         <p>장르 : {item.category}</p>
         <button
           on:click="{() => {
-            handleLike(i);
+            handleLike(item.id);
           }}">좋아요 {item.likeCount}</button
         >
         <button
           class="detail"
           on:click="{() => {
             isModal = !isModal;
-            handleMovieNumber(i);
+            handleMovieNumber(item.id);
           }}">상세 정보</button
         >
       </div>
