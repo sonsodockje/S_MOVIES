@@ -1,10 +1,12 @@
 <script>
   import { fade } from "svelte/transition";
   export let isEvent = true;
+  export let eventText;
+  export let eventIndex;
 </script>
 
 <div class="event show" out:fade="{{ duration: 500 }}">
-  <p>홍보멘트</p>
+  <p>{eventText[eventIndex]}</p>
   <button
     on:click="{() => {
       isEvent = false;
